@@ -1,0 +1,13 @@
+{
+  "name": "omni-ai-studio",
+  "version": "1.0.0",
+  "description": "Lightweight Multi-Model AI Chatbot & Image Generator for Websites (Gemini 3.8 Flash, Groq, OpenRouter, Cloudflare FLUX.1, Nano Banana 2.1)",
+  "type": "module",
+  "scripts": {
+    "start": "node local-server.mjs",
+    "dev": "node local-server.mjs"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
