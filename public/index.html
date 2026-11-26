@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OmniAI Studio — Multi-Model Chat & Image Generator</title>
+  <title>Onexal Ai — Multi-Model Chat & Image Generator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -60,13 +60,13 @@
 
     /* Sidebar */
     .sidebar {
-      width: 270px;
+      width: 274px;
       background: var(--bg-elev);
       border-right: 1px solid var(--border);
       display: flex;
       flex-direction: column;
       padding: 16px;
-      gap: 14px;
+      gap: 12px;
       z-index: 10;
       transition: transform 0.25s ease;
     }
@@ -93,6 +93,75 @@
       font-size: 18px;
       box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
     }
+
+    /* Google Auth Card */
+    .auth-card {
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(128, 128, 128, 0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .google-btn {
+      width: 100%;
+      background: #ffffff;
+      color: #1f2937;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.83rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .google-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,0.22); }
+    .user-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .user-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+      flex-shrink: 0;
+    }
+    .user-info {
+      min-width: 0;
+      flex: 1;
+    }
+    .user-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .sync-status {
+      font-size: 0.7rem;
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .signout-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 8px;
+      border-radius: 7px;
+      font-size: 0.72rem;
+      cursor: pointer;
+    }
+    .signout-btn:hover { color: var(--danger); border-color: rgba(239, 68, 68, 0.4); }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
@@ -164,6 +233,9 @@
       letter-spacing: 0.06em;
       color: var(--muted);
       margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .history-item {
       padding: 9px 11px;
@@ -582,7 +654,7 @@
       background: var(--bg-elev);
       border: 1px solid var(--border);
       border-radius: 16px;
-      max-width: 500px;
+      max-width: 520px;
       width: 100%;
       padding: 20px;
       display: flex;
@@ -637,7 +709,23 @@
   <aside class="sidebar" id="sidebar">
     <div class="brand">
       <div class="brand-icon">✦</div>
-      <span>OmniAI Studio</span>
+      <span>Onexal Ai</span>
+    </div>
+
+    <!-- Google Login & Cloud Sync Box -->
+    <div class="auth-card" id="authCard">
+      <button class="google-btn" id="googleLoginBtn">
+        <svg width="16" height="16" viewBox="0 0 48 48">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        <span>Sign in with Google</span>
+      </button>
+      <div id="authSubtext" style="font-size:0.71rem; color:var(--muted); text-align:center;">
+        Sign in to sync chat history across devices
+      </div>
     </div>
 
     <button class="btn-primary" id="newChatBtn">+ New Conversation</button>
@@ -648,7 +736,7 @@
     </div>
 
     <div class="history-list" id="historyList">
-      <div class="history-label">Saved Chats</div>
+      <div class="history-label"><span>Saved Chats</span><span id="storageModeTag">Local</span></div>
     </div>
 
     <div class="status-box">
@@ -756,7 +844,7 @@
 
       <div class="field">
         <label>Custom Bot Persona / System Prompt</label>
-        <textarea id="sysPromptInput" rows="2" placeholder="You are a helpful AI assistant..."></textarea>
+        <textarea id="sysPromptInput" rows="2" placeholder="You are Onexal Ai, a helpful and creative AI assistant..."></textarea>
       </div>
       <div class="field">
         <label>Gemini API Key (Optional Override)</label>
@@ -790,8 +878,79 @@
     </div>
   </div>
 
-  <script>
-    // ---------- State ----------
+  <!-- Firebase + App Logic (ESM Module) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      signOut,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+    import {
+      getFirestore,
+      collection,
+      doc,
+      setDoc,
+      deleteDoc,
+      getDocs,
+      query,
+      orderBy,
+      limit
+    } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+    // =========================================================================
+    // PASTE YOUR FIREBASE CONFIG HERE (From Firebase Console -> Project Settings)
+    // =========================================================================
+    const FIREBASE_CONFIG = {
+      // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDyKCTO3fe3s_Cv8dv3D4xImTiwsPKXTgU",
+  authDomain: "onexal-ai.firebaseapp.com",
+  projectId: "onexal-ai",
+  storageBucket: "onexal-ai.firebasestorage.app",
+  messagingSenderId: "888662080293",
+  appId: "1:888662080293:web:20d33f18b1fcd331fbb8cc",
+  measurementId: "G-YVWKQSLK0H"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+    };
+    // =========================================================================
+
+    const isFirebaseConfigured =
+      FIREBASE_CONFIG.apiKey &&
+      !FIREBASE_CONFIG.apiKey.startsWith("PASTE_") &&
+      FIREBASE_CONFIG.projectId &&
+      !FIREBASE_CONFIG.projectId.startsWith("PASTE_");
+
+    let auth = null;
+    let db = null;
+    let googleProvider = null;
+    let currentUser = null;
+
+    if (isFirebaseConfigured) {
+      try {
+        const fbApp = initializeApp(FIREBASE_CONFIG);
+        auth = getAuth(fbApp);
+        db = getFirestore(fbApp);
+        googleProvider = new GoogleAuthProvider();
+      } catch (e) {
+        console.error("Firebase init failed:", e);
+      }
+    }
+
+    // ---------- App State ----------
     const isEmbed = new URLSearchParams(window.location.search).get("embed") === "true";
     if (isEmbed) document.body.classList.add("embed-mode");
 
@@ -800,8 +959,6 @@
     let gallery = JSON.parse(localStorage.getItem("omni_gallery_v1") || "[]");
     let pendingAttachments = [];
     let serverProviders = {};
-
-    const savedSettings = JSON.parse(localStorage.getItem("omni_settings_v1") || "{}");
 
     // ---------- DOM Refs ----------
     const messagesEl = document.getElementById("messages");
@@ -812,6 +969,7 @@
     const attachmentBar = document.getElementById("attachmentBar");
     const tokenBadge = document.getElementById("tokenBadge");
     const sidebar = document.getElementById("sidebar");
+    const authCard = document.getElementById("authCard");
 
     // Configure Marked
     if (window.marked) {
@@ -844,13 +1002,160 @@
       };
     }
 
-    function saveChats() {
+    // ---------- Cloud Sync Helpers (Firestore) ----------
+    // Keep Firestore documents well below the 1MB limit by stripping oversized base64 images
+    function sanitizeChatForCloud(chat) {
+      const cleanMessages = (chat.messages || []).map((m) => {
+        const copy = { role: m.role, content: m.content || "", modelLabel: m.modelLabel || "" };
+        if (m.imageUrl && m.imageUrl.length < 350000) {
+          copy.imageUrl = m.imageUrl;
+        } else if (m.imageUrl) {
+          copy.content = (copy.content || "Generated image") + " (Image saved locally; too large for cloud sync)";
+        }
+        return copy;
+      });
+      return {
+        id: chat.id,
+        title: chat.title || "New Chat",
+        messages: cleanMessages,
+        updatedAt: chat.updatedAt || Date.now()
+      };
+    }
+
+    async function saveChatToCloud(chat) {
+      if (!currentUser || !db || !chat) return;
       try {
-        localStorage.setItem("omni_chats_v1", JSON.stringify(chats.slice(0, 30)));
-      } catch (e) {
-        console.warn("Storage limit reached, trimming older chats.");
-        chats = chats.slice(0, 10);
-        localStorage.setItem("omni_chats_v1", JSON.stringify(chats));
+        const ref = doc(db, "users", currentUser.uid, "chats", chat.id);
+        await setDoc(ref, sanitizeChatForCloud(chat), { merge: true });
+      } catch (err) {
+        console.warn("Cloud save error:", err.message);
+      }
+    }
+
+    async function deleteChatFromCloud(chatId) {
+      if (!currentUser || !db) return;
+      try {
+        await deleteDoc(doc(db, "users", currentUser.uid, "chats", chatId));
+      } catch (err) {
+        console.warn("Cloud delete error:", err.message);
+      }
+    }
+
+    async function loadChatsFromCloud(uid) {
+      if (!db) return;
+      try {
+        const q = query(
+          collection(db, "users", uid, "chats"),
+          orderBy("updatedAt", "desc"),
+          limit(40)
+        );
+        const snap = await getDocs(q);
+        const cloudChats = [];
+        snap.forEach((docSnap) => {
+          const data = docSnap.data();
+          if (data && data.id) cloudChats.push(data);
+        });
+
+        // Merge any non-empty local guest chats into cloud on first login
+        const localGuest = JSON.parse(localStorage.getItem("omni_chats_v1") || "[]").filter(
+          (c) => c.messages && c.messages.length > 0
+        );
+        const cloudIds = new Set(cloudChats.map((c) => c.id));
+        for (const lc of localGuest) {
+          if (!cloudIds.has(lc.id)) {
+            lc.updatedAt = lc.updatedAt || Date.now();
+            cloudChats.unshift(lc);
+            saveChatToCloud(lc);
+          }
+        }
+
+        cloudChats.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+        chats = cloudChats;
+        activeChatId = chats[0]?.id || null;
+        renderHistory();
+        renderMessages();
+      } catch (err) {
+        console.error("Failed to load cloud chats:", err);
+      }
+    }
+
+    function renderAuthUI() {
+      if (currentUser) {
+        const photo = currentUser.photoURL || "";
+        const name = currentUser.displayName || currentUser.email || "Google User";
+        authCard.innerHTML = `
+          <div class="user-row">
+            ${photo ? `<img class="user-avatar" src="${escapeHtml(photo)}" alt="Avatar" referrerpolicy="no-referrer" />` : `<div class="brand-icon" style="width:34px;height:34px;font-size:14px;">${escapeHtml(name[0].toUpperCase())}</div>`}
+            <div class="user-info">
+              <div class="user-name">${escapeHtml(name)}</div>
+              <div class="sync-status">☁️ Cloud Sync On</div>
+            </div>
+            <button class="signout-btn" id="googleSignOutBtn">Out</button>
+          </div>
+        `;
+        document.getElementById("googleSignOutBtn").onclick = async () => {
+          await signOut(auth);
+        };
+      } else {
+        authCard.innerHTML = `
+          <button class="google-btn" id="googleLoginBtn">
+            <svg width="16" height="16" viewBox="0 0 48 48">
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+            </svg>
+            <span>Sign in with Google</span>
+          </button>
+          <div style="font-size:0.71rem; color:var(--muted); text-align:center;">
+            ${isFirebaseConfigured ? "Sign in to sync chat history across devices" : "Paste Firebase Config in index.html to activate"}
+          </div>
+        `;
+        document.getElementById("googleLoginBtn").onclick = handleGoogleLogin;
+      }
+    }
+
+    async function handleGoogleLogin() {
+      if (!isFirebaseConfigured || !auth) {
+        alert("Google Login is not connected yet!\n\nOpen public/index.html and paste your Firebase Config in the FIREBASE_CONFIG section, then re-upload to GitHub.");
+        return;
+      }
+      try {
+        await signInWithPopup(auth, googleProvider);
+      } catch (err) {
+        alert("Google Sign-In Error: " + err.message);
+      }
+    }
+
+    if (auth) {
+      onAuthStateChanged(auth, async (user) => {
+        currentUser = user || null;
+        renderAuthUI();
+        if (currentUser) {
+          await loadChatsFromCloud(currentUser.uid);
+        } else {
+          chats = JSON.parse(localStorage.getItem("omni_chats_v1") || "[]");
+          activeChatId = chats[0]?.id || null;
+          renderHistory();
+          renderMessages();
+        }
+      });
+    } else {
+      renderAuthUI();
+    }
+
+    // ---------- Local + Cloud Save ----------
+    function saveChats(changedChat = null) {
+      if (currentUser && changedChat) {
+        changedChat.updatedAt = Date.now();
+        saveChatToCloud(changedChat);
+      } else {
+        try {
+          localStorage.setItem("omni_chats_v1", JSON.stringify(chats.slice(0, 30)));
+        } catch (e) {
+          chats = chats.slice(0, 10);
+          localStorage.setItem("omni_chats_v1", JSON.stringify(chats));
+        }
       }
     }
 
@@ -865,18 +1170,20 @@
       const chat = {
         id: "c_" + Date.now(),
         title: "New Chat",
-        messages: []
+        messages: [],
+        updatedAt: Date.now()
       };
       chats.unshift(chat);
       activeChatId = chat.id;
-      saveChats();
+      saveChats(chat);
       renderHistory();
       renderMessages();
       return chat;
     }
 
     function renderHistory() {
-      historyList.innerHTML = `<div class="history-label">Saved Chats</div>`;
+      const modeTag = currentUser ? "☁️ Cloud" : "Local";
+      historyList.innerHTML = `<div class="history-label"><span>Saved Chats</span><span>${modeTag}</span></div>`;
       chats.forEach((c) => {
         const div = document.createElement("div");
         div.className = "history-item" + (c.id === activeChatId ? " active" : "");
@@ -891,7 +1198,8 @@
           e.stopPropagation();
           chats = chats.filter((x) => x.id !== c.id);
           if (activeChatId === c.id) activeChatId = chats[0]?.id || null;
-          saveChats();
+          if (currentUser) deleteChatFromCloud(c.id);
+          else saveChats();
           renderHistory();
           renderMessages();
         };
@@ -950,7 +1258,7 @@
         wrapper.className = `msg ${m.role}`;
         const meta = document.createElement("div");
         meta.className = "msg-meta";
-        meta.textContent = m.role === "user" ? "You" : (m.modelLabel || "OmniAI");
+        meta.textContent = m.role === "user" ? "You" : (m.modelLabel || "Onexal Ai");
 
         const bubble = document.createElement("div");
         bubble.className = "bubble";
@@ -964,7 +1272,7 @@
               <img src="${m.imageUrl}" alt="AI Generated" />
               <div class="gen-img-actions">
                 <span>${escapeHtml(m.modelLabel || "Image AI")}</span>
-                <a href="${m.imageUrl}" download="omni-ai-${Date.now()}.png" class="btn-ghost" style="text-decoration:none; padding:4px 9px;">⬇ Download</a>
+                <a href="${m.imageUrl}" download="onexal-ai-${Date.now()}.png" class="btn-ghost" style="text-decoration:none; padding:4px 9px;">⬇ Download</a>
               </div>
             </div>
           `;
@@ -1015,7 +1323,6 @@
       sendBtn.disabled = true;
 
       try {
-        // Inline /imagine command support!
         if (text.toLowerCase().startsWith("/imagine ")) {
           const imgPrompt = text.slice(9).trim();
           loadingEl.querySelector("span:last-child").textContent = "Generating image...";
@@ -1042,7 +1349,6 @@
           });
           addToGallery(data.imageUrl, imgPrompt, data.providerUsed);
         } else {
-          // Chat API call
           const apiMessages = chat.messages
             .filter((m) => !m.imageUrl)
             .map((m) => ({ role: m.role, content: m.content }));
@@ -1082,13 +1388,13 @@
       } finally {
         pendingAttachments = [];
         renderAttachments();
-        saveChats();
+        saveChats(chat);
         renderMessages();
         sendBtn.disabled = false;
       }
     }
 
-    // ---------- Attachments (Huge Context File Reader + Image Vision) ----------
+    // ---------- Attachments ----------
     document.getElementById("attachBtn").onclick = () => document.getElementById("fileInput").click();
     document.getElementById("fileInput").onchange = async (e) => {
       for (const file of e.target.files) {
@@ -1149,7 +1455,7 @@
             <p title="${escapeHtml(item.prompt)}">${escapeHtml(item.prompt)}</p>
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span>${escapeHtml(item.provider)}</span>
-              <a href="${item.imageUrl}" download="omni-art-${item.ts}.png" class="btn-ghost" style="text-decoration:none; padding:4px 8px; font-size:0.74rem;">⬇ Save</a>
+              <a href="${item.imageUrl}" download="onexal-art-${item.ts}.png" class="btn-ghost" style="text-decoration:none; padding:4px 8px; font-size:0.74rem;">⬇ Save</a>
             </div>
           </div>
         `;
